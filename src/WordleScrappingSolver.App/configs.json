@@ -1,0 +1,5 @@
+{
+  "ChromeLink": "https://chromedriver.storage.googleapis.com/103.0.5060.53/chromedriver_win32.zip",
+  "WordleLink": "https://wordlegame.org/",
+  "WordleButtonClass": "Game-keyboard-button"
+}
