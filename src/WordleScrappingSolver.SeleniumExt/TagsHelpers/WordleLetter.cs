@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace WordleScrappingSolver.SeleniumExt.TagsHelpers
 {
-    public class LetterHelper
+    public class WordleLetter
     {
-        public LetterHelper()
+
+        public WordleLetter()
         {
 
         }

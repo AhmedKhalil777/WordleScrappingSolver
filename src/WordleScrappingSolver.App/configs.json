@@ -1,5 +1,9 @@
 {
   "ChromeLink": "https://chromedriver.storage.googleapis.com/103.0.5060.53/chromedriver_win32.zip",
   "WordleLink": "https://wordlegame.org/",
-  "WordleButtonClass": "Game-keyboard-button"
+  "WordleButtonClass": "Game-keyboard-button",
+  "WordleRowsClass": "game_rows",
+  "RowClass": "Row",
+  "RowLetterClass": "Row-letter",
+  "RowLockedClass": "Row-locked-in"
 }
