@@ -9,10 +9,14 @@
 
   <ItemGroup>
     <None Remove="configs.json" />
+    <None Remove="fiveLetters.json" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="configs.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="fiveLetters.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

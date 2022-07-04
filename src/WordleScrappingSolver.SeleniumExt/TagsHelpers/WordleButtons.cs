@@ -6,6 +6,7 @@ namespace WordleScrappingSolver.SeleniumExt.TagsHelpers
     public class WordleButtons
     {
         private readonly string _className;
+        private readonly Dictionary<string, string> _configs;
         private readonly IWebDriver _webDriver;
         private IWebElement _enetrButton;
         private IWebElement _escapeButton;
@@ -13,6 +14,7 @@ namespace WordleScrappingSolver.SeleniumExt.TagsHelpers
         public WordleButtons(Dictionary<string, string> configs, IWebDriver webDriver)
         {
             _className = configs["WordleButtonClass"];
+            _configs = configs;
             _webDriver = webDriver;
             PrepareButtons();
         }
@@ -20,6 +22,18 @@ namespace WordleScrappingSolver.SeleniumExt.TagsHelpers
 
         public void EneterWord(string word)
         {
+            foreach (var letter in word.ToUpper())
+            {
+                PressButton(letter);
+            }
+            Enetr();
+        }
+
+
+        public void EneterWord(Func<List<char>, List<Tuple<int,char>>, string> generator)
+        {
+            var wordleRows = new WordleRows(_webDriver, _configs);
+            var word = generator(wordleRows.GetHints(), wordleRows.GetSuccess());
             foreach (var letter in word.ToUpper())
             {
                 PressButton(letter);

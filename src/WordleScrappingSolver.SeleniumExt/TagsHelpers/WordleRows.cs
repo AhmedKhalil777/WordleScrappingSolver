@@ -14,7 +14,8 @@ namespace WordleScrappingSolver.SeleniumExt.TagsHelpers
         private readonly IWebDriver _webDriver;
         private readonly Dictionary<string, string> _configs;
         private IWebElement _rows;
-
+        private List<char> _hints;
+        private List<Tuple<int, char>> _success;
         public WordleRows(IWebDriver webDriver, Dictionary<string, string> configs)
         {
             _webDriver = webDriver;
@@ -26,6 +27,14 @@ namespace WordleScrappingSolver.SeleniumExt.TagsHelpers
                 .ToList();
         }
 
+        public List<char> GetHints()
+        {
+            throw new NotImplementedException();
+        }
 
+        public List<Tuple<int,char>> GetSuccess()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

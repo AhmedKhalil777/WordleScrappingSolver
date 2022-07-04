@@ -8,9 +8,10 @@ namespace WordleScrappingSolver.SeleniumExt
 {
     public static class WordleElementsClasses
     {
-        public const string RowLocked = nameof(RowLocked) +"Class";
-        public const string RowLetter = nameof(RowLetter) +"Class";
-        public const string Row = nameof(Row) +"Class";
+        private const string Base = @"Class";
+        public const string RowLocked = @$"{nameof(RowLocked)}{Base}";
+        public const string RowLetter = @$"{nameof(RowLetter)}{Base}";
+        public const string Row = @$"{nameof(Row)}{Base}";
 
     }
 }

@@ -21,8 +21,7 @@ namespace WordleScrappingSolver.SeleniumExt.TagsHelpers
         public WordleWord(IWebElement row, string rowLetterClassName, int order)
         {
              this.order = order;
-            Locked = _
-            _hints = row.FindElements(By.ClassName(rowLetterClassName)).Select(x=> x.)
+           // _hints = row.FindElements(By.ClassName(rowLetterClassName)).Select(x=> x.)
         }
 
         public bool IsEmpty => _isEmpty;

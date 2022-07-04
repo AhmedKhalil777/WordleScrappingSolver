@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using WordleScrappingSolver.SeleniumExt.TagsHelpers;
+using WordleScrappingSolver.SeleniumExt.WordEngine;
 
 namespace WordleScrappingSolver.SeleniumExt
 {
@@ -24,7 +25,12 @@ namespace WordleScrappingSolver.SeleniumExt
         public void StartPlay()
         {
             var buttonsHelper = new WordleButtons(_configs, _webDriver);
-            buttonsHelper.EneterWord("Ahmed");
+            var fiveLetters = new FiveLetters();
+            buttonsHelper.EneterWord(fiveLetters.GenerateRandom());
+            buttonsHelper.EneterWord(fiveLetters.GenerateRandom());
+            buttonsHelper.EneterWord(fiveLetters.GenerateRandom());
+            buttonsHelper.EneterWord(fiveLetters.GenerateRandom());
+            buttonsHelper.EneterWord(fiveLetters.GenerateRandom());
         }
     }
 }
