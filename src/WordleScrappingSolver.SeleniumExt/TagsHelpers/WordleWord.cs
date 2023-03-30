@@ -1,11 +1,5 @@
 ﻿using OpenQA.Selenium;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace WordleScrappingSolver.SeleniumExt.TagsHelpers
 {
     public class WordleWord
@@ -15,13 +9,49 @@ namespace WordleScrappingSolver.SeleniumExt.TagsHelpers
         private bool _haveHints;
         private bool _haveSuccess;
         private List<Tuple<char,LetterState,int>> _hints;
+        public IEnumerable<WordleLetter> Letters { get => _letters;  }
         private readonly List<WordleLetter> _letters = new List<WordleLetter>();
         private readonly int order;
-
-        public WordleWord(IWebElement row, string rowLetterClassName, int order)
+        private readonly Dictionary<string, string> _configs;
+        public WordleWord(IWebElement row, Dictionary<string,string> configs, int order)
         {
-             this.order = order;
-           // _hints = row.FindElements(By.ClassName(rowLetterClassName)).Select(x=> x.)
+            _configs=configs;
+            this.order = order;
+            var elements = row.FindElements(By.ClassName(configs["RowLetterClass"]));
+            for (int i = 0; i < elements.Count; i++)
+            {
+                var element = elements[i];
+                var letter = new WordleLetter {ColumnIndex = i};
+                var d = element.Text;
+                var classValue = element.GetDomAttribute("Class");
+                if (classValue is null)
+                {
+                    continue;
+                }
+                if (classValue.Contains(configs["AbsentLetter"]))
+                {
+                    letter.Char = element.Text[0];
+                    letter.State = CharState.Absent;
+                    _letters.Add(letter);
+
+                }
+                else if (classValue.Contains(configs["LetterElseWhere"]))
+                {
+                    letter.Char = element.Text[0];
+                    letter.State = CharState.ElseWhere;
+                    _letters.Add(letter);
+
+                }
+                else if(classValue.Contains(configs["LetterCorrect"]))
+                {
+                    letter.Char = element.Text[0];
+                    letter.State = CharState.Correct;
+                    _letters.Add(letter);
+
+                }
+            }
+           
+             
         }
 
         public bool IsEmpty => _isEmpty;

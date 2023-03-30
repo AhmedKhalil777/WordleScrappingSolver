@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using WordleScrappingSolver.SeleniumExt.TagsHelpers;
 
 namespace WordleScrappingSolver.SeleniumExt.WordEngine
 {
@@ -8,7 +9,7 @@ namespace WordleScrappingSolver.SeleniumExt.WordEngine
         static FiveLetters()
         {
             var lettersStr = File.ReadAllText("./fiveLetters.json");
-            _words = JsonSerializer.Deserialize<List<string>>(lettersStr)!;
+            _words = JsonSerializer.Deserialize<List<string>>(lettersStr)!.Select(x => x.ToUpper()).ToList();
         }
 
 
@@ -17,11 +18,30 @@ namespace WordleScrappingSolver.SeleniumExt.WordEngine
             return _words.Skip(new Random().Next(0, _words.Count - 1)).Take(1).First();
         }
 
-        public string Generate(HashSet<char> hints, HashSet<Tuple<int,char>> success)
+        public string Generate(WordleRows rows = null)
         {
-            return _words.Where(x => hints.Any(y => x.Any(z => y.ToString().ToUpper() == z.ToString().ToUpper())))
-                .Where(x=>  success.All(y => x[y.Item1].ToString().ToUpper() == y.Item2.ToString().ToUpper()))
-                .First();
+            if (rows == null)
+            {
+                return GenerateRandom();
+            }
+            IEnumerable<string> words = _words.AsReadOnly();
+            foreach (var letter in rows.GetWords().SelectMany(x => x.Letters).OrderBy(x=> x.State).DistinctBy(x =>  x.Char ))
+            {
+                if (letter.State == CharState.Correct)
+                {
+                    words = words.Where(x => x[letter.ColumnIndex] == letter.Char);
+
+                }
+                if (letter.State == CharState.ElseWhere)
+                {
+                    words = words.Where(x => x.Contains(letter.Char));
+                }
+                if (letter.State == CharState.Absent)
+                {
+                    words = words.Where(x => !x.Contains(letter.Char));
+                }
+            }
+            return words.First();
         }
     }
 }

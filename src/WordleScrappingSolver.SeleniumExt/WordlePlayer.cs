@@ -26,11 +26,15 @@ namespace WordleScrappingSolver.SeleniumExt
         {
             var buttonsHelper = new WordleButtons(_configs, _webDriver);
             var fiveLetters = new FiveLetters();
-            buttonsHelper.EneterWord(fiveLetters.GenerateRandom());
-            buttonsHelper.EneterWord(fiveLetters.GenerateRandom());
-            buttonsHelper.EneterWord(fiveLetters.GenerateRandom());
-            buttonsHelper.EneterWord(fiveLetters.GenerateRandom());
-            buttonsHelper.EneterWord(fiveLetters.GenerateRandom());
+ 
+            var rows =  buttonsHelper.EneterWord(fiveLetters.Generate());
+            rows = buttonsHelper.EneterWord(fiveLetters.Generate(rows));
+            rows = buttonsHelper.EneterWord(fiveLetters.Generate(rows));
+            rows = buttonsHelper.EneterWord(fiveLetters.Generate(rows));
+            rows = buttonsHelper.EneterWord(fiveLetters.Generate(rows));
+            rows = buttonsHelper.EneterWord(fiveLetters.Generate(rows));
+            Thread.Sleep(10000);
+            StartPlay();
         }
     }
 }

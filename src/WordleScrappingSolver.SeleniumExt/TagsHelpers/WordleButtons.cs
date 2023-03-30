@@ -20,13 +20,18 @@ namespace WordleScrappingSolver.SeleniumExt.TagsHelpers
         }
 
 
-        public void EneterWord(string word)
+        public WordleRows EneterWord(string word)
         {
             foreach (var letter in word.ToUpper())
             {
+
                 PressButton(letter);
+                Thread.Sleep(100);
             }
             Enetr();
+            Thread.Sleep(1000);
+
+            return new WordleRows(_webDriver, _configs);
         }
 
 

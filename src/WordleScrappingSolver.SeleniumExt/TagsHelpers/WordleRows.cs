@@ -22,9 +22,15 @@ namespace WordleScrappingSolver.SeleniumExt.TagsHelpers
             _configs = configs;
             _rows = _webDriver.FindElement(By.ClassName(configs["WordleRowsClass"]));
             int i = 1;
-            _words = _rows.FindElements(By.ClassName("RowClass"))
-                .Select(x => new WordleWord(x, configs["RowLetterClass"], i++))
+            _words = _rows.FindElements(By.ClassName(configs["RowClass"]))
+                .Select(x => new WordleWord(x, configs, i++))
                 .ToList();
+           
+        }
+
+        public List<WordleWord> GetWords()
+        {
+            return _words;
         }
 
         public List<char> GetHints()

@@ -17,9 +17,12 @@ namespace WordleScrappingSolver.SeleniumExt.WebLoaders
 
         public static async Task<ChromeDriver> GetChromeDriver(Dictionary<string,string> configs)
         {
+            
             await DownloadAndExtract(configs);
             return new ChromeDriver("./");
         }
+
+
         private static async Task DownloadAndExtract(Dictionary<string, string> configs)
         {
             if (File.Exists("./chromedriver.exe"))
