@@ -3,9 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordleScrappingSolver.App", "src\WordleScrappingSolver.App\WordleScrappingSolver.App.csproj", "{7A0D427E-5C12-4DD1-AED9-9D51DB2F64EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WordleScrappingSolver.App", "src\WordleScrappingSolver.App\WordleScrappingSolver.App.csproj", "{7A0D427E-5C12-4DD1-AED9-9D51DB2F64EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordleScrappingSolver.SeleniumExt", "src\WordleScrappingSolver.SeleniumExt\WordleScrappingSolver.SeleniumExt.csproj", "{24D09D2D-9E36-404B-B4CB-5DFF75FB27C5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WordleScrappingSolver.SeleniumExt", "src\WordleScrappingSolver.SeleniumExt\WordleScrappingSolver.SeleniumExt.csproj", "{24D09D2D-9E36-404B-B4CB-5DFF75FB27C5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Github", "Github", "{9AA98F48-4FB8-448B-A075-1B76B178E450}"
+	ProjectSection(SolutionItems) = preProject
+		img\Puzzle1.gif = img\Puzzle1.gif
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
